@@ -1,6 +1,6 @@
-# PandasDatasetProcessor
+# PandasDatasetHandler
 
-`PandasDatasetProcessor` is a Python package that provides utility functions for loading, saving, and processing datasets using Pandas DataFrames. It supports multiple file formats for reading and writing, as well as partitioning datasets into smaller chunks.
+`PandasDatasetHandler` is a Python package that provides utility functions for loading, saving, and processing datasets using Pandas DataFrames. It supports multiple file formats for reading and writing, as well as partitioning datasets into smaller chunks.
 
 ## Features
 - Load datasets from multiple file formats (CSV, JSON, XML, Parquet, ORC, HDF5, etc.).
@@ -22,7 +22,7 @@ pip install pandas-dataset-processor
 
 ```python
 import pandas as pd
-from pandas_dataset_processor import PandasDatasetProcessor
+from pandas_dataset_handler import PandasDatasetHandler
 ```
 
 ### 2. Loading a dataset
@@ -30,7 +30,7 @@ from pandas_dataset_processor import PandasDatasetProcessor
 You can load a dataset using the `load_dataset` method. It will automatically detect the file format based on the extension.
 
 ```python
-dataset = PandasDatasetProcessor.load_dataset('path/to/your/file.csv')
+dataset = PandasDatasetHandler.load_dataset('path/to/your/file.csv')
 ```
 
 ### 3. Saving a dataset
@@ -38,7 +38,7 @@ dataset = PandasDatasetProcessor.load_dataset('path/to/your/file.csv')
 To save a DataFrame in a specific file format, use the `save_dataset` method. You can specify the directory, base filename, and the format (e.g., CSV, JSON, Parquet, etc.).
 
 ```python
-PandasDatasetProcessor.save_dataset(
+PandasDatasetHandler.save_dataset(
     dataset=dataset,
     action_type='write',  # action type should be 'write' for saving
     file_format='csv',    # file format such as 'csv', 'json', 'parquet', etc.
@@ -52,14 +52,14 @@ PandasDatasetProcessor.save_dataset(
 You can partition a dataset into smaller DataFrames for distributed processing or other use cases:
 
 ```python
-partitions = PandasDatasetProcessor.generate_partitioned_datasets(dataset, num_parts=5)
+partitions = PandasDatasetHandler.generate_partitioned_datasets(dataset, num_parts=5)
 ```
 
 ### Example Code
 
 ```python
 import pandas as pd
-from pandas_dataset_processor import PandasDatasetProcessor
+from pandas_dataset_handler import PandasDatasetHandler
 
 dataset_1 = pd.read_csv('https://raw.githubusercontent.com/JorgeCardona/data-collection-json-csv-sql/refs/heads/main/csv/flight_logs_part_1.csv')
 dataset_2 = pd.read_csv('https://raw.githubusercontent.com/JorgeCardona/data-collection-json-csv-sql/refs/heads/main/csv/flight_logs_part_2.csv')
@@ -81,7 +81,7 @@ for index_dataset, dataset in enumerate(datasets):
         file_location = f"{path}/{base_filename}.{file_format}"
         file_locations.append(file_location)
         
-        PandasDatasetProcessor.save_dataset(
+        PandasDatasetHandler.save_dataset(
             dataset=dataset,
             action_type='write',
             file_format=file_format,
@@ -93,12 +93,12 @@ for index_dataset, dataset in enumerate(datasets):
 ```python
 # Load the saved files
 for file_location in file_locations:
-    PandasDatasetProcessor.load_dataset(file_location)
+    PandasDatasetHandler.load_dataset(file_location)
 ```
 
 ```python
 # Generate partitioned datasets
-partitions = PandasDatasetProcessor.generate_partitioned_datasets(dataset_2, 7)
+partitions = PandasDatasetHandler.generate_partitioned_datasets(dataset_2, 7)
 ```
 
 ## Error Handling
@@ -115,7 +115,7 @@ The package raises custom exceptions for handling different error scenarios:
 
 ```python
 try:
-    PandasDatasetProcessor.save_dataset(dataset, 'write', 'xml', './output', 'example')
+    PandasDatasetHandler.save_dataset(dataset, 'write', 'xml', './output', 'example')
 except SaveDatasetError as e:
     print(f"Error saving the dataset: {e}")
 except IncompatibleFormatError as e:
