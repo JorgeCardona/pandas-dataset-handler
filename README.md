@@ -99,6 +99,7 @@ for file_location in file_locations:
 ```python
 # Generate partitioned datasets
 partitions = PandasDatasetHandler.generate_partitioned_datasets(dataset_2, 7)
+partitions[0]
 ```
 
 ## Error Handling
