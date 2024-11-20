@@ -13,7 +13,7 @@
 To install the package, you can use `pip`:
 
 ```bash
-pip install pandas-dataset-processor
+pip install pandas-dataset-handler
 ```
 
 ## Usage Example
