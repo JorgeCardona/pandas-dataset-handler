@@ -89,21 +89,21 @@ for index_dataset, dataset in enumerate(datasets):
             base_filename=base_filename
         )
 ```
-![Save Dataset](images/save_dataset.png)
+![Save Dataset](https://raw.githubusercontent.com/JorgeCardona/pandas-dataset-handler/refs/heads/main/images/save_dataset.png)
 
 ```python
 # Load the saved files
 for file_location in file_locations:
     PandasDatasetHandler.load_dataset(file_location)
 ```
-![Load Dataset](images/load_dataset.png)
+![Load Dataset](https://raw.githubusercontent.com/JorgeCardona/pandas-dataset-handler/refs/heads/main/images/load_dataset.png)
 
 ```python
 # Generate partitioned datasets
 partitions = PandasDatasetHandler.generate_partitioned_datasets(dataset_2, 7)
 partitions[0]
 ```
-![Partitions](images/partitions.png)
+![Partitions](https://raw.githubusercontent.com/JorgeCardona/pandas-dataset-handler/refs/heads/main/images/partitions.png)
 
 
 ## Error Handling
