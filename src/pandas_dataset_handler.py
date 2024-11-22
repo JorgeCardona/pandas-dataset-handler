@@ -54,7 +54,7 @@ class PandasDatasetHandler:
         """
         if not os.path.exists(path):
             os.makedirs(path)
-            print(f"Directorio '{path}' creado.")
+            print(f"Directory '{path}' created successfully.")
 
     @staticmethod
     def compatible_formats(action_type: str, file_format: str, dataset: pd.DataFrame = None):
@@ -79,7 +79,8 @@ class PandasDatasetHandler:
                 'html': lambda filename: dataset.to_html(filename, index=False, border=1) if dataset is not None else None,
                 'hdf5': lambda filename: dataset.to_hdf(filename, key='df', mode='w') if dataset is not None else None,
                 'csv': lambda filename: dataset.to_csv(filename, encoding='utf-8', index=False) if dataset is not None else None,
-                'xlsx': lambda filename: dataset.to_excel(filename, engine='openpyxl', index=False) if dataset is not None else None
+                'xlsx': lambda filename: dataset.to_excel(filename, engine='openpyxl', index=False) if dataset is not None else None,
+                'md': lambda filename: dataset.to_markdown(filename, index=False) if dataset is not None else None
             },
             'read': {
                 'orc': pd.read_orc,
@@ -89,7 +90,8 @@ class PandasDatasetHandler:
                 'html': pd.read_html,
                 'csv': pd.read_csv,
                 'hdf5': pd.read_hdf,
-                'xlsx': pd.read_excel
+                'xlsx': pd.read_excel,
+                'md': lambda filename: pd.read_csv(filename, sep='|', skipinitialspace=True, skiprows=1).iloc[:, 1:-1]
             }
         }
     
@@ -97,7 +99,7 @@ class PandasDatasetHandler:
         compatible_file_format = compatible_action_type.get(file_format.lower(), None)
     
         return compatible_action_type, compatible_file_format
-
+        
     @staticmethod
     def save_dataset(dataset: pd.DataFrame, action_type: str, file_format: str, path: str = '.', base_filename: str = 'output_file') -> None:
         """

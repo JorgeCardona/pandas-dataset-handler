@@ -3,8 +3,8 @@
 `PandasDatasetHandler` is a Python package that provides utility functions for loading, saving, and processing datasets using Pandas DataFrames. It supports multiple file formats for reading and writing, as well as partitioning datasets into smaller chunks.
 
 ## Features
-- Load datasets from multiple file formats (CSV, JSON, XML, Parquet, ORC, HDF5, etc.).
-- Save datasets in various formats including CSV, JSON, Parquet, ORC, XML, HTML, HDF5, and XLSX.
+- Load datasets from multiple file formats (CSV, JSON, Parquet, ORC, XML, HTML, HDF5, XLSX and MARKDOWN).
+- Save datasets in various formats including CSV, JSON, Parquet, ORC, XML, HTML, HDF5, XLSX and MARKDOWN.
 - Partition a DataFrame into smaller datasets for efficient processing.
 - Custom error handling for incompatible actions, formats, and processing.
 
@@ -64,7 +64,7 @@ from pandas_dataset_handler import PandasDatasetHandler
 dataset_1 = pd.read_csv('https://raw.githubusercontent.com/JorgeCardona/data-collection-json-csv-sql/refs/heads/main/csv/flight_logs_part_1.csv')
 dataset_2 = pd.read_csv('https://raw.githubusercontent.com/JorgeCardona/data-collection-json-csv-sql/refs/heads/main/csv/flight_logs_part_2.csv')
 
-file_formats = ['orc', 'parquet', 'xml', 'json', 'html', 'csv', 'hdf5', 'xlsx']
+file_formats = ['orc', 'parquet', 'xml', 'json', 'html', 'csv', 'hdf5', 'xlsx', 'md']
 datasets = [dataset_1, dataset_2]
 ```
 
@@ -89,18 +89,22 @@ for index_dataset, dataset in enumerate(datasets):
             base_filename=base_filename
         )
 ```
+![Save Dataset](images/save_dataset.png)
 
 ```python
 # Load the saved files
 for file_location in file_locations:
     PandasDatasetHandler.load_dataset(file_location)
 ```
+![Load Dataset](images/load_dataset.png)
 
 ```python
 # Generate partitioned datasets
 partitions = PandasDatasetHandler.generate_partitioned_datasets(dataset_2, 7)
 partitions[0]
 ```
+![Partitions](images/partitions.png)
+
 
 ## Error Handling
 
