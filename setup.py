@@ -11,7 +11,7 @@ setuptools.setup(
     name="pandas-dataset-handler",
     version=version,  # Use the dynamic version from the environment variable
     author="Jorge Cardona",
-    description="A tool to process and export datasets in various formats including ORC, Parquet, XML, JSON, HTML, CSV, HDF5, and XLSX.",
+    description="A tool to process and export datasets in various formats including ORC, Parquet, XML, JSON, HTML, CSV, HDF5, XLSX and Markdown.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/jorgecardona/pandas-dataset-handler",

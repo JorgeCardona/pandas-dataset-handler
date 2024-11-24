@@ -3,8 +3,8 @@
 `PandasDatasetHandler` is a Python package that provides utility functions for loading, saving, and processing datasets using Pandas DataFrames. It supports multiple file formats for reading and writing, as well as partitioning datasets into smaller chunks.
 
 ## Features
-- Load datasets from multiple file formats (CSV, JSON, Parquet, ORC, XML, HTML, HDF5, XLSX and MARKDOWN).
-- Save datasets in various formats including CSV, JSON, Parquet, ORC, XML, HTML, HDF5, XLSX and MARKDOWN.
+- Load datasets from multiple file formats (CSV, JSON, Parquet, ORC, XML, HTML, HDF5, XLSX and Markdown).
+- Save datasets in various formats including CSV, JSON, Parquet, ORC, XML, HTML, HDF5, XLSX and Markdown.
 - Partition a DataFrame into smaller datasets for efficient processing.
 - Custom error handling for incompatible actions, formats, and processing.
 
@@ -17,6 +17,21 @@ pip install pandas-dataset-handler
 ```
 
 ## Usage Example
+
+This table provides a quick reference for mapping common file types to their corresponding argument names used in functions or libraries that require specifying the file format.
+
+| **File Type** | **Function Argument Name** |
+|---------------|----------------------------|
+| CSV           | `'csv'`                   |
+| JSON          | `'json'`                  |
+| Parquet       | `'parquet'`               |
+| ORC           | `'orc'`                   |
+| XML           | `'xml'`                   |
+| HTML          | `'html'`                  |
+| HDF5          | `'hdf5'`                  |
+| XLSX          | `'xlsx'`                  |
+| Markdown      | `'md'`                    |
+
 
 ### 1. Importing the package
 
